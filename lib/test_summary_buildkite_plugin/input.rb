@@ -3,6 +3,7 @@
 # We don't use nokogiri because we use an alpine-based docker image
 # And adding the required dependencies triples the size of the image
 require 'rexml/document'
+require 'fileutils'
 
 module TestSummaryBuildkitePlugin
   module Input
