@@ -21,7 +21,7 @@ module TestSummaryBuildkitePlugin
       if args.first == 'annotate'
         context = args[2]
         content = CommonMarker.render_html(stdin)
-        html = HamlRender.render('test_layout', content: content)
+        html = HamlRender.render('test_layout', { content: content })
         FileUtils.mkdir_p('tmp')
         out = Pathname.new('tmp').join(context + '.html')
         out.open('w') { |file| file.write(html) }

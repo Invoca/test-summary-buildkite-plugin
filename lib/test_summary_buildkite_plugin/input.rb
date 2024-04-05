@@ -3,6 +3,7 @@
 # We don't use nokogiri because we use an alpine-based docker image
 # And adding the required dependencies triples the size of the image
 require 'rexml/document'
+require 'fileutils'
 
 module TestSummaryBuildkitePlugin
   module Input
@@ -12,7 +13,7 @@ module TestSummaryBuildkitePlugin
     def self.create(type:, **options)
       type = type.to_sym
       raise StandardError, "Unknown file type: #{type}" unless TYPES.key?(type)
-      TYPES[type].new(options)
+      TYPES[type].new(**options)
     end
 
     class Base
